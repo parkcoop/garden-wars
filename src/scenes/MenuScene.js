@@ -11,7 +11,7 @@ export class MenuScene extends Phaser.Scene {
   create() {
     //Background load
     // this.add.image(0, 0, CST.IMAGE.TITLE).setOrigin(0, 0);
-    this.sound.play(CST.AUDIO.TITLE);
+    // this.sound.play(CST.AUDIO.TITLE);
 
     this.L2 = this.add
       .sprite(
