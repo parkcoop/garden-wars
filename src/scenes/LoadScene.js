@@ -9,21 +9,21 @@ class LoadScene extends Phaser.Scene {
 
   init() {}
   loadImages() {
-    this.load.setPath("./assets/image");
+    this.load.setPath("assets/image");
 
     for (let prop in CST.IMAGE) {
       this.load.image(CST.IMAGE[prop], CST.IMAGE[prop]);
     }
   }
   loadAudio() {
-    this.load.setPath("./assets/audio");
+    this.load.setPath("assets/audio");
 
     for (let prop in CST.AUDIO) {
       this.load.audio(CST.AUDIO[prop], CST.AUDIO[prop]);
     }
   }
   loadSprites(frameConfig) {
-    this.load.setPath("./assets/sprite");
+    this.load.setPath("assets/sprite");
 
     for (let prop in CST.SPRITE) {
       this.load.spritesheet(CST.SPRITE[prop], CST.SPRITE[prop], frameConfig);
@@ -31,7 +31,7 @@ class LoadScene extends Phaser.Scene {
   }
 
   loadPlants(frameConfig) {
-    this.load.setPath("./assets/plantSprite");
+    this.load.setPath("assets/plantSprite");
 
     for (let prop in CST.PLANTSPRITE) {
       this.load.spritesheet(
