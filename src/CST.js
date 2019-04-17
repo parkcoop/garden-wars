@@ -34,7 +34,7 @@ const CST = {
   },
   SPRITE: {
     PARKER: "parker.png",
-    PINKDUDE: "pinkdude.png",
+    PINKDUDE: "pinkDude.png",
     PARKERSUN: "dudeSUN.png",
     PARKERWATER: "dudeWATER.png",
     SUNFLOWER: "sunflower.png"
