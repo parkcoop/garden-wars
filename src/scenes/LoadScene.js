@@ -24,7 +24,6 @@ class LoadScene extends Phaser.Scene {
   }
   loadSprites(frameConfig) {
     this.load.setPath("assets/sprite");
-
     for (let prop in CST.SPRITE) {
       this.load.spritesheet(CST.SPRITE[prop], CST.SPRITE[prop], frameConfig);
     }
