@@ -1,4 +1,4 @@
-import { CST } from "../CST";
+// import { CST } from "../CST";
 
 var sunflowerStage = 0;
 var tulipStage = 0;
@@ -23,7 +23,7 @@ var scoreText1;
 var scoreText2;
 var health1;
 var health2;
-export class PlayScene extends Phaser.Scene {
+class PlayScene extends Phaser.Scene {
   constructor() {
     super({ key: CST.SCENES.PLAY });
 
@@ -270,11 +270,11 @@ export class PlayScene extends Phaser.Scene {
     thunderDrops = this.physics.add.group({
       key: CST.IMAGE.THUNDER,
       repeat: 0,
-      setXY: { x: 300, y: 0, stepX: 0 }
+      setXY: { x: 100, y: 0, stepX: 100 }
     });
 
     thunderDrops.children.iterate(child => {
-      child.body.gravity.y = 100;
+      child.body.gravity.y = 1000;
       child.setScale(2);
     });
     // thunderDrops.body.gravity.y = 150;

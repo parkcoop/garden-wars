@@ -1,4 +1,4 @@
-import { CST } from "../CST";
+// import { CST } from "../CST";
 
 var sunflowerStage = 0;
 var tulipStage = 0;
@@ -23,7 +23,7 @@ var scoreText1;
 var scoreText2;
 var health1;
 var health2;
-export class Level2 extends Phaser.Scene {
+class Level2 extends Phaser.Scene {
   constructor() {
     super({ key: CST.SCENES.LEVEL2 });
 
