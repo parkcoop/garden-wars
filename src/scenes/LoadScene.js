@@ -59,14 +59,6 @@ class LoadScene extends Phaser.Scene {
       }
     });
 
-    //simulates large load
-    // for (let i = 0; i < 100; i++) {
-    //   this.load.spritesheet("dude" + i, "./assets/dude.png", {
-    //     frameWidth: 32,
-    //     frameHeight: 48
-    //   });
-    // }
-
     this.load.on("progress", percent => {
       loadingBar.fillRect(
         0,

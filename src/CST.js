@@ -15,11 +15,27 @@ const CST = {
     AGAIN: "again.png",
     WINNER1: "winnerPlayer1.png",
     WINNER2: "winnerPlayer2.png",
+    NOWINNER: "nowinner.png",
+    CREDITS: "credits.png",
     SUNNY: "sky.png",
     FOREST: "forest.png",
     SUNSET: "sunset.png",
     GROUND: "ground.png",
     PLATFORM: "platform.png",
+    PLATFORM1: "platform1.png",
+    PLATFORM2: "platform2.png",
+    PLATFORM3: "platform3.png",
+    BUSH1: "bush1.png",
+    BUSH2: "bush2-1.png",
+    BUSH3: "bush2-2.png",
+    BUSH4: "bush3-1.png",
+    BUSH5: "bush3-2.png",
+    ROCK: "rock3-1.png",
+    TREE1: "tree1.png",
+    TREE2: "tree1-2.png",
+    TREE3: "tree2-1.png",
+    TREE4: "tree2-2.png",
+    TREE5: "tree3-1.png",
     SUN: "sun.png",
     WATER: "water.png",
     PLANT: "plant.png",
@@ -34,7 +50,9 @@ const CST = {
     P1: "PStage1.png"
   },
   AUDIO: {
-    TITLE: "title.ogg"
+    TITLE: "title.ogg",
+    MENU: "awesomeness.ogg",
+    MEADOW: "livelymeadow.ogg"
   },
   SPRITE: {
     PARKER: "parker.png",

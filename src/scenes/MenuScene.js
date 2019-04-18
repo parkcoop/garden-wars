@@ -1,5 +1,4 @@
-// import { CST } from "../CST";
-
+var music;
 class MenuScene extends Phaser.Scene {
   constructor() {
     super({
@@ -16,29 +15,27 @@ class MenuScene extends Phaser.Scene {
     scorePlayer2 = 0;
   }
   create() {
-    //Background load
-    // this.add.image(0, 0, CST.IMAGE.TITLE).setOrigin(0, 0);
-    this.sound.play(CST.AUDIO.TITLE);
+    music = this.sound.play(CST.AUDIO.MENU, { loop: true });
 
-    this.L2 = this.add
+    let bg = (this.L2 = this.add
       .sprite(
         0, // x-axis
         0, // y-axis
         CST.IMAGE.L2 //given name
       )
       .setOrigin(0, 0)
-      .setScale(3);
+      .setScale(3));
     this.L1 = this.add
       .sprite(
         -50, // x-axis
-        100, // y-axis
+        50, // y-axis
         CST.IMAGE.L1 //given name
       )
       .setOrigin(0, 0)
       .setScale(3);
     this.L3 = this.add
       .sprite(
-        -150, // x-axis
+        300, // x-axis
         180, // y-axis
         CST.IMAGE.L3 //given name
       )
@@ -87,7 +84,6 @@ class MenuScene extends Phaser.Scene {
       )
       .setScale(0.5);
 
-    //Play button assignment/render
     let playButton = this.add
       .image(
         this.game.renderer.width / 2,
@@ -95,26 +91,13 @@ class MenuScene extends Phaser.Scene {
         CST.IMAGE.PLAY
       )
       .setDepth(1);
-
-    //quit button render
-    // let quitButton: Phaser.GameObjects.Image = this.add
-    //   .image(
-    //     this.game.renderer.width / 2,
-    //     this.game.renderer.height / 2 + 100,
-    //     CST.IMAGE.QUIT
-    //   )
-    //   .setDepth(1);
-    //hover sprite render
-    // let hoverSprite: Phaser.GameObjects.Sprite = this.add.sprite(
-    //   100,
-    //   100,
-    //   CST.SPRITE.PARKER
-    // );
-
-    //title music
+    this.add
+      .image(this.game.renderer.width / 2, 580, CST.IMAGE.CREDITS)
+      .setScale(0.15);
 
     playButton.setInteractive();
     playButton.on("pointerdown", () => {
+      game.sound.stopAll();
       this.scene.start(CST.SCENES.PLAY);
     });
     playButton.setInteractive();
@@ -124,9 +107,14 @@ class MenuScene extends Phaser.Scene {
   }
 
   update() {
-    this.L1.y -= 0.15;
-    this.L5.x -= 0.05;
-    this.L6.x -= 0.05;
+    if (this.L1.y > -100) {
+      this.L1.y -= 0.15;
+    }
+    if (this.L5.x > -380) {
+      this.L5.x -= 0.1;
+      this.L6.x -= 0.05;
+    }
+
     this.L7.x -= 0.1;
   }
 }

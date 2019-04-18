@@ -1,5 +1,3 @@
-// import { CST } from "../CST";
-
 class GameOver extends Phaser.Scene {
   constructor() {
     super({
@@ -9,10 +7,10 @@ class GameOver extends Phaser.Scene {
   init() {}
   preload() {}
   create() {
-    this.add.image(0, 0, CST.IMAGE.TITLE).setOrigin(0, 0);
-    // this.sound.play(CST.AUDIO.TITLE);
-    //Logo render
-    //quit button render
+    this.add
+      .image(0, 0, CST.IMAGE.SUNSET)
+      .setOrigin(0, 0)
+      .setScale(3);
     if (totalScorePlayer1 > totalScorePlayer2) {
       this.add
         .image(
@@ -21,12 +19,20 @@ class GameOver extends Phaser.Scene {
           CST.IMAGE.WINNER1
         )
         .setScale(0.5);
-    } else {
+    } else if (totalScorePlayer1 < totalScorePlayer2) {
       this.add
         .image(
           this.game.renderer.width / 2,
           this.game.renderer.height / 2 - 100,
           CST.IMAGE.WINNER2
+        )
+        .setScale(0.5);
+    } else {
+      this.add
+        .image(
+          this.game.renderer.width / 2,
+          this.game.renderer.height / 2 - 100,
+          CST.IMAGE.NOWINNER
         )
         .setScale(0.5);
     }
@@ -39,6 +45,8 @@ class GameOver extends Phaser.Scene {
 
     againButton.setInteractive();
     againButton.on("pointerdown", () => {
+      game.sound.stopAll();
+
       this.scene.start(CST.SCENES.PLAY);
     });
 
@@ -51,13 +59,6 @@ class GameOver extends Phaser.Scene {
     tulipStage = 0;
     roseStage = 0;
     sunflowerStage = 0;
-    //hover sprite render
-    // let hoverSprite: Phaser.GameObjects.Sprite = this.add.sprite(
-    //   100,
-    //   100,
-    //   CST.SPRITE.PARKER
-    // );
-    //title music
   }
 
   update() {}
