@@ -7,7 +7,7 @@ console.log("new stuff");
 let game = new Phaser.Game({
   width: 800,
   height: 600,
-  scene: [LoadScene, MenuScene, PlayScene, Level2, Level3],
+  scene: [LoadScene, MenuScene, PlayScene, Level2, Level3, GameOver],
   render: {
     pixelArt: true
   },

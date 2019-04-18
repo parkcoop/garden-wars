@@ -4,13 +4,17 @@ const CST = {
     MENU: "MENU",
     PLAY: "PLAY",
     LEVEL2: "LEVEL2",
-    LEVEL3: "LEVEL3"
+    LEVEL3: "LEVEL3",
+    GAMEOVER: "GAMEOVER"
   },
   IMAGE: {
     LOGO: "logo.png",
     TITLE: "sunset.png",
     PLAY: "play.png",
     QUIT: "quit.png",
+    AGAIN: "again.png",
+    WINNER1: "winnerPlayer1.png",
+    WINNER2: "winnerPlayer2.png",
     SUNNY: "sky.png",
     FOREST: "forest.png",
     SUNSET: "sunset.png",
@@ -34,7 +38,7 @@ const CST = {
   },
   SPRITE: {
     PARKER: "parker.png",
-    PINKDUDE: "pinkDude.png",
+    PINKDUDE: "andriw.png",
     PARKERSUN: "dudeSUN.png",
     PARKERWATER: "dudeWATER.png",
     SUNFLOWER: "sunflower.png"

@@ -7,11 +7,18 @@ class MenuScene extends Phaser.Scene {
     });
   }
   init() {}
-  preload() {}
+  preload() {
+    totalScorePlayer1 = 0;
+    totalScorePlayer2 = 0;
+    healthPlayer1 = 100;
+    healthPlayer2 = 100;
+    scorePlayer1 = 0;
+    scorePlayer2 = 0;
+  }
   create() {
     //Background load
     // this.add.image(0, 0, CST.IMAGE.TITLE).setOrigin(0, 0);
-    // this.sound.play(CST.AUDIO.TITLE);
+    this.sound.play(CST.AUDIO.TITLE);
 
     this.L2 = this.add
       .sprite(

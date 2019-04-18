@@ -35,6 +35,13 @@ class Level2 extends Phaser.Scene {
     //   frameWidth: 11,
     //   frameHeight: 23
     // });
+    scorePlayer1 = 0;
+    scorePlayer2 = 0;
+    sunflowerStage = 0;
+    tulipStage = 0;
+    roseStage = 0;
+    healthPlayer1 = 100;
+    healthPlayer2 = 100;
     this.anims.create({
       key: "P1",
       frames: [{ key: CST.PLANTSPRITE.PLANTS, frame: 0 }],
@@ -113,6 +120,17 @@ class Level2 extends Phaser.Scene {
     });
 
     this.anims.create({
+      key: "andriwSun",
+      frames: [{ key: CST.SPRITE.PINKDUDE, frame: 22 }],
+      frameRate: 20
+    });
+    this.anims.create({
+      key: "andriwWater",
+      frames: [{ key: CST.SPRITE.PINKDUDE, frame: 13 }],
+      frameRate: 20
+    });
+
+    this.anims.create({
       key: "right",
       frames: this.anims.generateFrameNumbers(CST.SPRITE.PARKER, {
         start: 5,
@@ -126,6 +144,78 @@ class Level2 extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers(CST.SPRITE.PINKDUDE, {
         start: 0,
         end: 3
+      }),
+      frameRate: 10,
+      repeat: -1
+    });
+    this.anims.create({
+      key: "andriwSunLeft",
+      frames: this.anims.generateFrameNumbers(CST.SPRITE.PINKDUDE, {
+        start: 18,
+        end: 21
+      }),
+      frameRate: 10,
+      repeat: -1
+    });
+    this.anims.create({
+      key: "andriwWaterLeft",
+      frames: this.anims.generateFrameNumbers(CST.SPRITE.PINKDUDE, {
+        start: 9,
+        end: 12
+      }),
+      frameRate: 10,
+      repeat: -1
+    });
+    this.anims.create({
+      key: "andriwWaterRight",
+      frames: this.anims.generateFrameNumbers(CST.SPRITE.PINKDUDE, {
+        start: 14,
+        end: 17
+      }),
+      frameRate: 10,
+      repeat: -1
+    });
+    this.anims.create({
+      key: "andriwSunRight",
+      frames: this.anims.generateFrameNumbers(CST.SPRITE.PINKDUDE, {
+        start: 23,
+        end: 26
+      }),
+      frameRate: 10,
+      repeat: -1
+    });
+    this.anims.create({
+      key: "parkerSunLeft",
+      frames: this.anims.generateFrameNumbers(CST.SPRITE.PARKER, {
+        start: 18,
+        end: 21
+      }),
+      frameRate: 10,
+      repeat: -1
+    });
+    this.anims.create({
+      key: "parkerWaterLeft",
+      frames: this.anims.generateFrameNumbers(CST.SPRITE.PARKER, {
+        start: 9,
+        end: 12
+      }),
+      frameRate: 10,
+      repeat: -1
+    });
+    this.anims.create({
+      key: "parkerWaterRight",
+      frames: this.anims.generateFrameNumbers(CST.SPRITE.PARKER, {
+        start: 14,
+        end: 17
+      }),
+      frameRate: 10,
+      repeat: -1
+    });
+    this.anims.create({
+      key: "parkerSunRight",
+      frames: this.anims.generateFrameNumbers(CST.SPRITE.PARKER, {
+        start: 23,
+        end: 26
       }),
       frameRate: 10,
       repeat: -1
@@ -161,8 +251,8 @@ class Level2 extends Phaser.Scene {
 
     // player1.setBounce(3);
 
-    player1.setBounce(0.5);
-    player2.setBounce(0.5);
+    player1.setBounce(0.1);
+    player2.setBounce(0.1);
 
     //PLATFORMS
     //
@@ -270,11 +360,11 @@ class Level2 extends Phaser.Scene {
     thunderDrops = this.physics.add.group({
       key: CST.IMAGE.THUNDER,
       repeat: 0,
-      setXY: { x: 300, y: 0, stepX: 0 }
+      setXY: { x: 500, y: 0, stepX: 100 }
     });
 
     thunderDrops.children.iterate(child => {
-      child.body.gravity.y = 100;
+      child.body.gravity.y = 1000;
       child.setScale(2);
     });
     // thunderDrops.body.gravity.y = 150;
@@ -372,6 +462,11 @@ class Level2 extends Phaser.Scene {
       this.deathPlayer2();
     }
     if (scorePlayer1 >= 100 || scorePlayer2 >= 100) {
+      scorePlayer1 > scorePlayer2 ? totalScorePlayer1++ : totalScorePlayer2++;
+      this.scene.start(CST.SCENES.LEVEL3);
+    }
+    if (tulipStage == 5 && sunflowerStage == 5 && roseStage == 5) {
+      scorePlayer1 > scorePlayer2 ? totalScorePlayer1++ : totalScorePlayer2++;
       this.scene.start(CST.SCENES.LEVEL3);
     }
     if (inventoryPlayer1.includes("sun")) {
@@ -380,9 +475,13 @@ class Level2 extends Phaser.Scene {
     if (inventoryPlayer1.includes("water")) {
       player1.play("parkerWater", true);
     }
-
+    if (inventoryPlayer2.includes("sun")) {
+      player2.play("andriwSun", true);
+    }
+    if (inventoryPlayer2.includes("water")) {
+      player2.play("andriwWater", true);
+    }
     this.updateCounter();
-    let randomNumber = Math.floor(Math.random() * (10 - 6) + 6);
     switch (sunflowerStage) {
       case 0:
         sunflower.play("P1", true);
@@ -444,15 +543,25 @@ class Level2 extends Phaser.Scene {
         break;
     }
 
-    //KEYBOARD CONTROL
-
     if (this.keyboard.D.isDown == true) {
       player1.setVelocityX(500);
-      player1.play("right", true);
+      if (inventoryPlayer1.includes("sun")) {
+        player1.anims.play("parkerSunRight", true);
+      } else if (inventoryPlayer1.includes("water")) {
+        player1.anims.play("parkerWaterRight", true);
+      } else {
+        player1.anims.play("right", true);
+      }
     }
     if (this.keyboard.A.isDown == true) {
       player1.setVelocityX(-500);
-      player1.play("left", true);
+      if (inventoryPlayer1.includes("sun")) {
+        player1.anims.play("parkerSunLeft", true);
+      } else if (inventoryPlayer1.includes("water")) {
+        player1.anims.play("parkerWaterLeft", true);
+      } else {
+        player1.anims.play("left", true);
+      }
     }
     if (this.keyboard.W.isDown == true && player1.body.touching.down) {
       player1.setVelocityY(-2000);
@@ -473,17 +582,29 @@ class Level2 extends Phaser.Scene {
 
     if (this.cursors.left.isDown) {
       player2.setVelocityX(-500);
-      player2.anims.play("left2", true);
+      if (inventoryPlayer2.includes("sun")) {
+        player2.anims.play("andriwSunLeft", true);
+      } else if (inventoryPlayer2.includes("water")) {
+        player2.anims.play("andriwWaterLeft", true);
+      } else {
+        player2.anims.play("left2", true);
+      }
     } else if (this.cursors.right.isDown) {
       player2.setVelocityX(500);
 
-      player2.anims.play("right2", true);
+      if (inventoryPlayer2.includes("sun")) {
+        player2.anims.play("andriwSunRight", true);
+      } else if (inventoryPlayer2.includes("water")) {
+        player2.anims.play("andriwWaterRight", true);
+      } else {
+        player2.anims.play("right2", true);
+      }
     } else {
       player2.setVelocityX(0);
-
-      player2.anims.play("turn2");
+      if (inventoryPlayer2.length == 0) {
+        player2.anims.play("turn2");
+      }
     }
-
     if (this.cursors.up.isDown && player2.body.touching.down) {
       player2.setVelocityY(-2000);
     }
@@ -504,8 +625,14 @@ class Level2 extends Phaser.Scene {
   }
 
   collectSun() {
-    if (!inventoryPlayer1.includes("water")) {
+    if (
+      !inventoryPlayer1.includes("water") &&
+      !inventoryPlayer1.includes("sun")
+    ) {
       inventoryPlayer1 = ["sun"];
+      sunDrops.children.iterate(child => {
+        child.y = 1000;
+      });
       //NEW STUFF
       // sunDrops.disableBody(true, true);
     }
@@ -513,22 +640,40 @@ class Level2 extends Phaser.Scene {
     console.log(inventoryPlayer1);
   }
   collectSun2() {
-    if (!inventoryPlayer2.includes("water")) {
+    if (
+      !inventoryPlayer2.includes("water") &&
+      !inventoryPlayer2.includes("sun")
+    ) {
       inventoryPlayer2 = ["sun"];
+      sunDrops.children.iterate(child => {
+        child.y = 1000;
+      });
     }
 
     console.log(inventoryPlayer2);
   }
 
   collectWater() {
-    if (!inventoryPlayer1.includes("sun")) {
+    if (
+      !inventoryPlayer1.includes("water") &&
+      !inventoryPlayer1.includes("sun")
+    ) {
       inventoryPlayer1 = ["water"];
+      waterDrops.children.iterate(child => {
+        child.y = 1000;
+      });
     }
     console.log(inventoryPlayer1);
   }
   collectWater2() {
-    if (!inventoryPlayer2.includes("sun")) {
+    if (
+      !inventoryPlayer2.includes("water") &&
+      !inventoryPlayer2.includes("sun")
+    ) {
       inventoryPlayer2 = ["water"];
+      waterDrops.children.iterate(child => {
+        child.y = 1000;
+      });
     }
     console.log(inventoryPlayer2);
   }
@@ -632,7 +777,7 @@ class Level2 extends Phaser.Scene {
   }
 
   thunder() {
-    this.cameras.main.shake(25);
+    // this.cameras.main.shake(25);
     let randomPos = Phaser.Math.Between(0, 800);
     thunderDrops.children.iterate(function(child) {
       child.enableBody(true, randomPos, 0, true, true);
@@ -651,17 +796,22 @@ class Level2 extends Phaser.Scene {
       child.enableBody(true, randomPos, 0, true, true);
     });
   }
-
   thunderStrike() {
-    console.log("hi");
     this.cameras.main.shake(50);
-    healthPlayer1 -= 1;
+    healthPlayer1 -= 5;
+    player1.setTint(0x0000ff);
+    setTimeout(function() {
+      player1.setTint(0xffffff);
+    }, 750);
   }
 
   thunderStrike2() {
-    console.log("hi");
     this.cameras.main.shake(50);
-    healthPlayer2 -= 1;
+    healthPlayer2 -= 5;
+    player2.setTint(0x0000ff);
+    setTimeout(function() {
+      player2.setTint(0xffffff);
+    }, 750);
   }
   deathPlayer1() {
     player1.setTint(0xff0000);
