@@ -143,7 +143,7 @@ class Level2 extends Phaser.Scene {
     this.anims.create({
       key: "andriwSunLeft",
       frames: this.anims.generateFrameNumbers(CST.SPRITE.PINKDUDE, {
-        start: 18,
+        start: 19,
         end: 21
       }),
       frameRate: 10,
@@ -152,7 +152,7 @@ class Level2 extends Phaser.Scene {
     this.anims.create({
       key: "andriwWaterLeft",
       frames: this.anims.generateFrameNumbers(CST.SPRITE.PINKDUDE, {
-        start: 9,
+        start: 10,
         end: 12
       }),
       frameRate: 10,
@@ -179,7 +179,7 @@ class Level2 extends Phaser.Scene {
     this.anims.create({
       key: "parkerSunLeft",
       frames: this.anims.generateFrameNumbers(CST.SPRITE.PARKER, {
-        start: 18,
+        start: 19,
         end: 21
       }),
       frameRate: 10,
@@ -188,7 +188,7 @@ class Level2 extends Phaser.Scene {
     this.anims.create({
       key: "parkerWaterLeft",
       frames: this.anims.generateFrameNumbers(CST.SPRITE.PARKER, {
-        start: 9,
+        start: 10,
         end: 12
       }),
       frameRate: 10,
