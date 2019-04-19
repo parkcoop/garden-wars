@@ -12,6 +12,7 @@ const CST = {
     TITLE: "sunset.png",
     PLAY: "play.png",
     QUIT: "quit.png",
+    BOX: "counter.png",
     AGAIN: "again.png",
     WINNER1: "winnerPlayer1.png",
     WINNER2: "winnerPlayer2.png",
@@ -50,7 +51,6 @@ const CST = {
     P1: "PStage1.png"
   },
   AUDIO: {
-    TITLE: "title.ogg",
     MENU: "awesomeness.ogg",
     MEADOW: "livelymeadow.ogg"
   },

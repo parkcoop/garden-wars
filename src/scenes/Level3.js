@@ -235,11 +235,34 @@ class Level3 extends Phaser.Scene {
       .image(0, 0, CST.IMAGE.SUNSET)
       .setOrigin(0, 0)
       .setScale(3);
+
+    this.add.image(160, 50, CST.IMAGE.BOX).setScale(4);
+
     this.add.image(150, 160, CST.IMAGE.TREE5).setScale(4);
     this.add.image(600, 150, CST.IMAGE.BUSH4).setScale(4);
     this.add.image(60, 520, CST.IMAGE.BUSH5).setScale(4);
     this.add.image(550, 530, CST.IMAGE.ROCK).setScale(4);
 
+    this.add.image(160, 50, CST.IMAGE.BOX).setScale(4);
+
+    scoreText1 = this.add.text(75, 32, "0", {
+      fontSize: "36px",
+      fill: "#FF0"
+    });
+
+    health1 = this.add.text(200, 33, "100", {
+      fontSize: "32px",
+      fill: "#F00"
+    });
+    this.add.image(643, 50, CST.IMAGE.BOX).setScale(4);
+    scoreText2 = this.add.text(560, 32, "0", {
+      fontSize: "32px",
+      fill: "#FF0"
+    });
+    health2 = this.add.text(685, 33, "100", {
+      fontSize: "32px",
+      fill: "#F00"
+    });
     player1 = this.physics.add.sprite(100, 450, CST.SPRITE.PARKER).setScale(2);
     player1.body.gravity.y = 10000;
     player2 = this.physics.add
@@ -279,22 +302,6 @@ class Level3 extends Phaser.Scene {
       .sprite(100, 100, CST.PLANTSPRITE.PLANTS)
       .setScale(4);
     tulip.body.gravity.y = 1000;
-    scoreText1 = this.add.text(16, 16, "Player 1: 0", {
-      fontSize: "32px",
-      fill: "#FF0"
-    });
-    health1 = this.add.text(16, 50, "Health: 100", {
-      fontSize: "32px",
-      fill: "#F00"
-    });
-    scoreText2 = this.add.text(560, 16, "Player 2: 0", {
-      fontSize: "32px",
-      fill: "#FF0"
-    });
-    health2 = this.add.text(560, 50, "Health: 100", {
-      fontSize: "32px",
-      fill: "#F00"
-    });
 
     waterDrops = this.physics.add.group({
       key: CST.IMAGE.WATER,
@@ -325,7 +332,7 @@ class Level3 extends Phaser.Scene {
 
     thunderDrops.children.iterate(child => {
       child.body.gravity.y = 1000;
-      child.setScale(2);
+      child.setScale(4.5);
     });
     player1.setCollideWorldBounds(true);
     player2.setCollideWorldBounds(true);
@@ -392,10 +399,10 @@ class Level3 extends Phaser.Scene {
   }
 
   update(time, delta) {
-    scoreText1.setText("Player 1: " + scorePlayer1);
-    scoreText2.setText("Player 2: " + scorePlayer2);
-    health1.setText("Health: " + healthPlayer1);
-    health2.setText("Health: " + healthPlayer2);
+    scoreText1.setText(scorePlayer1);
+    scoreText2.setText(scorePlayer2);
+    health1.setText(healthPlayer1);
+    health2.setText(healthPlayer2);
 
     if (healthPlayer1 <= 0) {
       this.deathPlayer1();
