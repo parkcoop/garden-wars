@@ -1,4 +1,5 @@
-# Garden Wars
+
+![GardenWars Logo](/assets/image/logo.png)
 
 A fun, action-packed game set in the garden.
 
